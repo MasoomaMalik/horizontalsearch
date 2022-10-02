@@ -1,6 +1,5 @@
 import { Stack } from "@mui/material";
 import NavbarSub from "./NavbarSub";
-import SearchBar from "./SearchBar";
 
 const Navbar = () => (
 
@@ -24,11 +23,12 @@ const Navbar = () => (
       height={20}
     />
 
-    <SearchBar />
+   
   </Stack>
 
   <Stack>
-    <NavbarSub/>
+    <NavbarSub 
+     />
   </Stack>
   </>
 

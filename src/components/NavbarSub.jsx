@@ -11,11 +11,14 @@ import {
   Typography,
 } from "@mui/material";
 
+import Divider from "@mui/material/Divider";
+import SearchBar from "./SearchBar";
+
 const NavbarSub = () => {
   const [allCategories, setAllCategories] = useState([]);
-    const [falseCtg, setFalseCat] = useState([]);
-    const [trueCtg, setTrueCat] = useState([]);
-    const [filterList, setFilterList] = useState([]);
+  const [falseCtg, setFalseCat] = useState([]);
+  const [trueCtg, setTrueCat] = useState([]);
+  const [filterList, setFilterList] = useState([]);
   let trueCat = [];
   let falseCat = [];
   let newFilterList = [];
@@ -23,10 +26,9 @@ const NavbarSub = () => {
   const getCategories = () => {
     let tempData = data.map((x) => x.category);
     tempData = [...new Set([...tempData])];
-    
+
     setAllCategories([...tempData]);
-    setFalseCat([...tempData])
-    
+    setFalseCat([...tempData]);
   };
 
   const mapCategories = () => {};
@@ -78,8 +80,6 @@ const NavbarSub = () => {
     // HandleFalseCat();
   }, []);
 
-
-
   const HandleClicked = (e) => {
     data.map((val, ind) =>
       val.category == e ? (val.clicked = !val.clicked) : null
@@ -94,14 +94,14 @@ const NavbarSub = () => {
     // tempList= [...trueCat]
     // filterList=[...tempList]
     // [filterList] = trueCat.map((y) => data.filter((x) => x.category == y));
-let temp =trueCat.map((y) => data.filter((x) => x.category == y))
+    let temp = trueCat.map((y) => data.filter((x) => x.category == y));
 
     let newFilterList = [].concat.apply([], temp);
 
-    setFilterList( newFilterList )
+    setFilterList(newFilterList);
     // ( trueCat.map((y)=>y))
-setTrueCat(trueCat)
-setFalseCat(falseCat)
+    setTrueCat(trueCat);
+    setFalseCat(falseCat);
 
     //     // setFilterList([...filteredList]);
 
@@ -344,92 +344,103 @@ setFalseCat(falseCat)
 
   return (
     <>
-     
-
       <Stack direction="row">
         {console.log(trueCtg)}
-        {
-        
-        
-        trueCtg.map((e, i) => (
+        {trueCtg.map((e, i) => (
           <button
+            className="true-btn cat-btn"
             key={i}
             value={e}
-            onClick={
-                () => HandleClicked(e)
-  
-                //   ,HandleTrueCat()
-              }
+            onClick={() => HandleClicked(e)}
           >
             {e}
           </button>
         ))}
-      </Stack>
-
-      <Stack direction="row">
-        {console.log(trueCtg)}
-        {
-        
-        
-        falseCtg.map((e, i) => (
+        {/* <Divider orientation="vertical" variant="middle" flexItem /> */}
+        {falseCtg.map((e, i) => (
           <button
-          p={3}
+            className="  cat-btn"
+            p={3}
             key={i}
             value={e}
             // onClick={
-                onClick={
-                    () => HandleClicked(e)
-      
-                    //   ,HandleTrueCat()
-                  }
-
-            //   //   ,HandleTrueCat()
-            // }
+            onClick={() => HandleClicked(e)}
           >
             {e}
           </button>
         ))}
       </Stack>
-      <Grid container sx={{background:'yellow'}}>
-        {filterList.map((e, i) => (
-          <Grid item md={3} xs={12} sm={6} key={i}>
-            <Box className="bgLight">
-              <Chip label={e.category} />
-              <img src={e.image} width="100%" alt="" />
-              <Tooltip title={e.title}>
-                <Typography
-                  sx={{ height: 60, overflow: "hidden" }}
-                  variant="h6"
-                >
-                  {e.title.slice(0, 30) + (e.title.length > 30 ? "..." : "")}
-                </Typography>
-              </Tooltip>
 
-              <Typography variant="h5">Rs {e.price}/-</Typography>
-            </Box>
-          </Grid>
+      {/* SearchbAR CALLED HERE */}
+      <SearchBar
+        filterList={filterList}
+        setFilterList={setFilterList}
+        data={data}
+      />
+
+      <Grid
+        container
+        rowSpacing={1}
+        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+       
+        sx={{
+          border: 5
+          ,p:2,
+          m: 5
+        }}
+      >
+        {filterList.map((e, i) => (
+          <Grid item md={2} xs={12} sm={6} key={i} className="grid-container"
+          sx={{
+            border: 2,
+            m:1
+          }}
+          >
+          <Box className="bgLight" width={150}
+          sx={{}}
+          >
+            {/* <Chip label={e.category} /> */}
+
+            <img src={e.image} alt="" height={100} className="grid-img" />
+            <Tooltip title={e.title}>
+              <Typography
+                sx={{ height: 20, overflow: "hidden" }}
+                variant="subtitle2"
+              >
+                {e.title.slice(0, 30) + (e.title.length > 30 ? "..." : "")}
+              </Typography>
+            </Tooltip>
+            <Typography variant="caption">Rs {e.price}/-</Typography>
+          </Box>
+        </Grid>
         ))}
       </Grid>
       <hr />
-      <Grid container>
-        {        
-        data.map((e, i) => (
-          <Grid item md={3} xs={12} sm={6} key={i}>
-            <Box className="bgLight">
-              <Chip label={e.category} />
-              <img src={e.image} width="100%" alt="" />
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 3, md: 4 }}>
+      {/* <Typography variant='h4'>Here you come first</Typography> */}
+
+        {data.map((e, i) => (
+          <Grid item md={3} xs={12} sm={6} key={i} className="grid-container" 
+          sx={{
+            border: 2,
+            m:1
+          }}>
+            <Box className="bgLight" width={150}>
+              {/* <Chip label={e.category} /> */}
+
+              <img src={e.image} alt="" height={100} className="grid-img" />
               <Tooltip title={e.title}>
                 <Typography
-                  sx={{ height: 60, overflow: "hidden" }}
-                  variant="h6"
+                  sx={{ height: 20, overflow: "hidden" }}
+                  variant="subtitle2"
                 >
                   {e.title.slice(0, 30) + (e.title.length > 30 ? "..." : "")}
                 </Typography>
               </Tooltip>
-              <Typography variant="h5">Rs {e.price}/-</Typography>
+              <Typography variant="caption">Rs {e.price}/-</Typography>
             </Box>
           </Grid>
-        ))  }
+        ))}
       </Grid>
     </>
   );

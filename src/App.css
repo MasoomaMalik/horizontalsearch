@@ -40,11 +40,62 @@
 }
 
 .searchbar-text{
-  width:80%;
+  width:100px;
   color:white;
-  
+ padding:0.5rem;
+ /* padding-left: rem; */
+ border-radius: 35px/50px;
+ outline: none;
+border: none;
 
+background-color: #ff6a00;
+  
 }
+
+.cat-btn{
+  
+   margin: 0.5rem;
+  color: #ff6a00;
+  width:auto;
+
+    background-color:transparent;
+    border-radius: 20%;
+    outline: none;
+    border:1px solid #ff6a00;
+   
+}
+.true-btn{
+background-color: #ff6a00;
+color:white;
+}
+.filteredbox{
+  border:2rem solid grey;
+}
+ .grid-container{
+/* height: 30vh; */
+ }
+ .grid-container img{
+/* height:100% */
+/* align-self: center; */
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

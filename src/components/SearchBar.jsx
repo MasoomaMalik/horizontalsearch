@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Paper,Stack, IconButton, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import NavbarSub from "./NavbarSub";
-const SearchBar = () => {
+const SearchBar = ({filterList, setFilterList,data}) => {
   //   const [searchTerm, setSearchTerm] = useState('');
   //   const navigate = useNavigate();
 
@@ -15,14 +15,17 @@ const SearchBar = () => {
   //       setSearchTerm('');
   //     }
   //   };
-//   let searchItem = (val) => {
-//     let filteredList = data.filter(
-//       (x) =>
-//         x.category == filterArray &&
-//         x.title.toLowerCase().includes(val.toLowerCase())
-//     );
-//     setFilterList([...filteredList]);
-//   };
+  let searchItem = (val) => {
+
+console.log(" filter list by searchjsx")
+console.log(filterList)
+    let filteredList = filterList.filter(
+      (x) =>
+        
+        x.title.toLowerCase().includes(val.toLowerCase())
+    );
+    setFilterList([...filteredList]);
+  };
 
   return (
     <Stack
@@ -30,7 +33,7 @@ const SearchBar = () => {
       direction="row"
       //   onSubmit={onhandleSubmit}
       sx={{
-     
+  my:3,
         ml: 5 ,
         borderRadius: 20,
         border: "1px solid #e3e3e3",
@@ -50,26 +53,23 @@ const SearchBar = () => {
           onChange={(e) => searchItem(e.target.value)}
           sx={{  
                 
-            p:2
+            p:2,
+          
           }}
           // value={searchTerm}
           // onChange={(e) => setSearchTerm(e.target.value)}
         />
       </span>
       <span>
-        <Typography 
-           className='searchbar-text'
+        <button 
+           className='searchbar-text  '
            
            
-           sx={{
-            p:1 ,
-            pl:5,
-            borderRadius:20,
-
-            background:'#ff6a00'
-        }}>Search</Typography>
+        
+        >Search</button>
       </span>
     </Stack>
+    
   );
 };
 
